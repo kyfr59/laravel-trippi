@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    const TOURIST   = 'touriste';
+    const TOURIST   = 'tourist';
     const PRO       = 'pro';
 
     /**
