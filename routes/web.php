@@ -13,10 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::multilingual('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
+// Authentication Routes...
+Route::multilingual('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::multilingual('login', 'Auth\LoginController@login')->method('post');
+Route::multilingual('logout', 'Auth\LoginController@logout')->method('post');
+
+// Registration Routes...
+Route::multilingual('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::multilingual('register', 'Auth\RegisterController@register')->method('post');
+
+// Password Reset Routes...
+Route::multilingual('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::multilingual('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->method('post');
+Route::multilingual('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::multilingual('password/reset', 'Auth\ResetPasswordController@reset')->method('post');
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -18,11 +18,11 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ localized_route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ localized_route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
@@ -32,18 +32,29 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item" href="{{ localized_route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ localized_route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>
                     </li>
                 @endguest
+                <li class="nav-item">
+                    @php
+                        $languages = Config::get('constants.languages')[locale()];
+                    @endphp
+                    @foreach ($languages as $code => $label)
+                        @if ($code == locale())
+                            @continue
+                        @endif
+                        <a class="nav-link" href="{{ current_route($code) }}">{{ $label }}</a>
+                    @endforeach
+                </li>
             </ul>
         </div>
     </div>
