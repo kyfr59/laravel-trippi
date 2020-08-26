@@ -33,13 +33,16 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ localized_route('logout') }}"
+                            @php
+                                $type = Auth::user()->type
+                            @endphp
+                            <a class="dropdown-item" href="{{ localized_route($type . '/logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
-                            <form id="logout-form" action="{{ localized_route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ localized_route($type . '/logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>

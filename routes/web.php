@@ -18,11 +18,6 @@ Route::multilingual('/', function () {
 });
 
 
-// Authentication Routes...
-Route::multilingual('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::multilingual('login', 'Auth\LoginController@login')->method('post');
-Route::multilingual('logout', 'Auth\LoginController@logout')->method('post');
-
 // Registration Routes...
 Route::multilingual('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::multilingual('register', 'Auth\RegisterController@register')->method('post');
@@ -39,10 +34,15 @@ Route::multilingual('tourist/publish', function () {
     return __("Project publication page");
 });
 
-Route::multilingual('pro/login', function () {
-    return __("Pro login page");
-});
 
-Route::multilingual('tourist/login', function () {
-    return __("Pro login page");
-});
+// Pro routes
+Route::multilingual('pro/login', 'Pro\LoginController@showLoginForm')->name('login');
+Route::multilingual('pro/login', 'Pro\LoginController@login')->method('post');
+Route::multilingual('pro/logout', 'Pro\LoginController@logout')->method('post');
+
+// Tourist routes
+Route::multilingual('tourist/login', 'Tourist\LoginController@showLoginForm')->name('login');
+Route::multilingual('tourist/login', 'Tourist\LoginController@login')->method('post');
+Route::multilingual('tourist/logout', 'Tourist\LoginController@logout')->method('post');
+
+
