@@ -34,3 +34,15 @@ Route::multilingual('password/reset/{token}', 'Auth\ResetPasswordController@show
 Route::multilingual('password/reset', 'Auth\ResetPasswordController@reset')->method('post');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::multilingual('tourist/publish', function () {
+    return __("Project publication page");
+});
+
+Route::multilingual('pro/login', function () {
+    return __("Pro login page");
+});
+
+Route::multilingual('tourist/login', function () {
+    return __("Pro login page");
+});
