@@ -41,6 +41,7 @@ Route::multilingual('pro/login', 'Pro\LoginController@login')->method('post');
 Route::multilingual('pro/logout', 'Pro\LoginController@logout')->method('post');
 
 // Tourist routes
+Route::multilingual('tourist/', 'Tourist\IndexController@index')->name('tourist');
 Route::multilingual('tourist/login', 'Tourist\LoginController@showLoginForm')->name('login');
 Route::multilingual('tourist/login', 'Tourist\LoginController@login')->method('post');
 Route::multilingual('tourist/logout', 'Tourist\LoginController@logout')->method('post');
