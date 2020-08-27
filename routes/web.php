@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::multilingual('/', function () {
-    return view('welcome');
-});
+    return view('home')
+})->middleware('home');
 
 
 // Registration Routes...
@@ -28,7 +28,7 @@ Route::multilingual('password/email', 'Auth\ForgotPasswordController@sendResetLi
 Route::multilingual('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::multilingual('password/reset', 'Auth\ResetPasswordController@reset')->method('post');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::multilingual('tourist/publish', function () {
     return __("Project publication page");
@@ -45,5 +45,3 @@ Route::multilingual('tourist/', 'Tourist\IndexController@index')->name('tourist'
 Route::multilingual('tourist/login', 'Tourist\LoginController@showLoginForm')->name('login');
 Route::multilingual('tourist/login', 'Tourist\LoginController@login')->method('post');
 Route::multilingual('tourist/logout', 'Tourist\LoginController@logout')->method('post');
-
-
