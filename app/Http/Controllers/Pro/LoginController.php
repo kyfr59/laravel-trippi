@@ -13,23 +13,16 @@ class LoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Login Controller
+    | Pro Login Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
+    | This controller handles authenticating professionals for the application
+    | and redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
     */
 
     use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -41,28 +34,56 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        return view('pro.login');
+    }
+
+
+    /**
+     * Authentificate the tourist and redirect
+     *
+     * @return void
+     */
     public function login(Request $request)
     {
-        echo "Pro";
-
         $input = $request->all();
 
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $messages = [
+              'email.required' => __("The e-mail address is required"),
+              'email.email' => __("The e-mail address is incorrect"),
+              'password.required' => __("The password is required"),
+              'password.min' => 'The password must contain at least 8 characters',
+            ];
 
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-        {
-            if (auth()->user()->is_admin == 1) {
-                return redirect()->route('admin.home');
-            }else{
-                return redirect()->route('home');
-            }
-        }else{
-            return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+
+        $v = $this->validate(
+            $request,
+            [
+              'email' => 'required|email',
+              'password' => 'required|min:8',
+            ],
+            $messages
+        );
+
+        if (auth()->attempt(
+            [
+              'email' => $input['email'],
+              'password' => $input['password'],
+              'type' => User::PRO
+            ]
+        )) {
+          return redirect(localized_route('pro'));
+        } else {
+          return redirect(localized_route('pro/login'))
+                ->with('error', __("Incorrect e-mail address or password"))
+                ->withInput();
         }
-
     }
 }
