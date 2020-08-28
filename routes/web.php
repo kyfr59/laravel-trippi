@@ -22,6 +22,7 @@ Route::multilingual('/', function () {
 Route::multilingual('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::multilingual('register', 'Auth\RegisterController@register')->method('post');
 
+
 // Password Reset Routes...
 Route::multilingual('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
 Route::multilingual('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->method('post');

@@ -24,6 +24,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return "tourist homepage";
+        return view('tourist.home');
     }
 }

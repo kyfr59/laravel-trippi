@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -24,6 +24,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return "pro homepage";
+        return view('pro.home');
     }
 }
