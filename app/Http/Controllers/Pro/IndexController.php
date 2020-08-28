@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tourist;
+namespace App\Http\Controllers\Pro;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -24,6 +24,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return "tourist homepage";
+        return "pro homepage";
     }
 }

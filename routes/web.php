@@ -28,20 +28,32 @@ Route::multilingual('password/email', 'Auth\ForgotPasswordController@sendResetLi
 Route::multilingual('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::multilingual('password/reset', 'Auth\ResetPasswordController@reset')->method('post');
 
-// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::multilingual('tourist/publish', function () {
-    return __("Project publication page");
+// Pro routes
+Route::name('pro.')->group(function () {
+
+  Route::middleware('auth_is_pro')->group(function () {
+    Route::multilingual('pro', 'Pro\IndexController@index')->name('home');
+  });
+
+  Route::multilingual('pro/login', 'Pro\LoginController@showLoginForm')->name('login');
+  Route::multilingual('pro/login', 'Pro\LoginController@login')->method('post')->name('login');
+  Route::multilingual('pro/logout', 'Pro\LoginController@logout')->method('post')->name('logout');
 });
 
 
-// Pro routes
-Route::multilingual('pro/login', 'Pro\LoginController@showLoginForm')->name('login');
-Route::multilingual('pro/login', 'Pro\LoginController@login')->method('post');
-Route::multilingual('pro/logout', 'Pro\LoginController@logout')->method('post');
-
 // Tourist routes
-Route::multilingual('tourist/', 'Tourist\IndexController@index')->name('tourist');
-Route::multilingual('tourist/login', 'Tourist\LoginController@showLoginForm')->name('login');
-Route::multilingual('tourist/login', 'Tourist\LoginController@login')->method('post');
-Route::multilingual('tourist/logout', 'Tourist\LoginController@logout')->method('post');
+Route::name('tourist.')->group(function () {
+
+  Route::middleware('auth_is_tourist')->group(function () {
+    Route::multilingual('tourist', 'Tourist\IndexController@index')->name('home');
+  });
+
+  Route::multilingual('tourist/login', 'Tourist\LoginController@showLoginForm')->name('login');
+  Route::multilingual('tourist/login', 'Tourist\LoginController@login')->method('post')->name('login');
+  Route::multilingual('tourist/logout', 'Tourist\LoginController@logout')->method('post')->name('logout');
+
+  Route::multilingual('tourist/publish', function () {
+    return __("Project publication page");
+  })->name('publish');
+});

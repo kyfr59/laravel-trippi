@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }} - TOURIST</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ localized_route('login') }}">
+                    <form method="POST" action="{{ localized_route('tourist.login') }}">
                         @csrf
 
                         <div class="form-group row">

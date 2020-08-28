@@ -80,9 +80,9 @@ class LoginController extends Controller
               'type' => User::TOURIST
             ]
         )) {
-          return redirect(localized_route('tourist'));
+          return redirect(localized_route('tourist.home'));
         } else {
-          return redirect(localized_route('tourist/login'))
+          return redirect(localized_route('tourist.login'))
                 ->with('error', __("Incorrect e-mail address or password"))
                 ->withInput();
         }

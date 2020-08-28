@@ -18,13 +18,13 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ localized_route('tourist/publish') }}">{{ __('Publish a project') }}</a>
+                        <a class="nav-link" href="{{ localized_route('tourist.publish') }}">{{ __('Publish a project') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ localized_route('tourist/login') }}">{{ __('Tourist login') }}</a>
+                        <a class="nav-link" href="{{ localized_route('tourist.login') }}">{{ __('Tourist login') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ localized_route('pro/login') }}">{{ __('Tourism professionals access') }}</a>
+                        <a class="nav-link" href="{{ localized_route('pro.login') }}">{{ __('Tourism professionals access') }}</a>
                     </li>
                 @else
                     <li class="nav-item dropdown">
@@ -36,13 +36,13 @@
                             @php
                                 $type = Auth::user()->type
                             @endphp
-                            <a class="dropdown-item" href="{{ localized_route($type . '/logout') }}"
+                            <a class="dropdown-item" href="{{ localized_route($type . '.logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
-                            <form id="logout-form" action="{{ localized_route($type . '/logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ localized_route($type . '.logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>

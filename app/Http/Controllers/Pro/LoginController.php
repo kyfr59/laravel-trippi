@@ -79,9 +79,9 @@ class LoginController extends Controller
               'type' => User::PRO
             ]
         )) {
-          return redirect(localized_route('pro'));
+          return redirect(localized_route('pro.home));
         } else {
-          return redirect(localized_route('pro/login'))
+          return redirect(localized_route('pro.login'))
                 ->with('error', __("Incorrect e-mail address or password"))
                 ->withInput();
         }

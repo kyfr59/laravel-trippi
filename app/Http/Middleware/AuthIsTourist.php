@@ -8,10 +8,11 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class Home extends Middleware
+class AuthIsTourist extends Middleware
 {
     /**
-     * Handle an incoming request.
+     * Ensure that the user is connected as a tourist,
+     * overwhise redirects to home
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -20,11 +21,8 @@ class Home extends Middleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($user = Auth::user()) {
-            if ($user->type == User::TOURIST)
-                return redirect(localized_route('tourist.home'));
-            elseif ($user->type == User::PRO)
-                return redirect(localized_route('pro.home'));
+        if (Auth::guest() || Auth::user()->type != User::TOURIST) {
+           return redirect(localized_route('/'));
         }
 
         return $next($request);
