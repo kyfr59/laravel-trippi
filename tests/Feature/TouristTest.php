@@ -8,6 +8,16 @@ use App\Models\User;
 
 class TouristTest extends TestCase
 {
+    protected $locales;
+
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->locales = locales();
+    }
+
     /**
      * Check that tourist can view login form
      *
@@ -33,5 +43,12 @@ class TouristTest extends TestCase
     public function test_tourist_cannot_view_a_login_form_when_authenticated()
     {
          $user = factory(User::class)->make();
+
+         foreach($this->locales as $locale) {
+            $route = localized_route('tourist.login', [], $locale);
+            $response = $this->actingAs($user)->get($route);
+            $localized_home = localized_route('/');
+            $response->assertRedirect($localized_home);
+         }
     }
 }
