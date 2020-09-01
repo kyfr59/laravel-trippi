@@ -83,7 +83,7 @@ class LoginController extends Controller
         } else {
           return redirect(localized_route('pro.login'))
                 ->with('error', __("Incorrect e-mail address or password"))
-                ->withInput();
+                ->withInput()->exceptInput('password');
         }
     }
 }

@@ -84,7 +84,7 @@ class LoginController extends Controller
         } else {
           return redirect(localized_route('tourist.login'))
                 ->with('error', __("Incorrect e-mail address or password"))
-                ->withInput();
+                ->withInput()->exceptInput('password');
         }
     }
 }
