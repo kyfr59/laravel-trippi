@@ -8,8 +8,9 @@ use App\Models\User;
 
 class TouristTest extends TestCase
 {
-    protected $locales;
+    use RefreshDatabase;
 
+    protected $locales;
 
     protected function setUp(): void
     {
@@ -51,4 +52,51 @@ class TouristTest extends TestCase
             $response->assertRedirect($localized_home);
          }
     }
+
+
+    /**
+     * Check that tourist can login with correct credentials
+     *
+     * @return void
+     */
+    public function test_tourist_can_login_with_correct_credentails()
+    {
+        $user = factory(User::class)->create([
+            'password' => bcrypt($password = 'tourist-password'),
+        ]);
+
+        $response = $this->post('/tourist/login', [
+            'email' => $user->email,
+            'password' => $password,
+        ]);
+
+        $response->assertRedirect(localized_route('tourist.home'));
+        $this->assertAuthenticatedAs($user);
+    }
+
+
+    /**
+     * Check that tourist cannot login with incorrect credentials
+     *
+     * @return void
+     */
+    public function test_tourist_cannot_login_with_incorrect_password()
+    {
+        $user = factory(User::class)->create([
+            'password' => bcrypt('tourist-password'),
+        ]);
+
+        $response = $this->from('/tourist/login')->post('/tourist/login', [
+            'email' => $user->email,
+            'password' => 'invalid-password',
+        ]);
+
+        $response->assertRedirect('/tourist/login');
+        $errors = session('error');
+        $this->assertEquals($errors, __("Incorrect e-mail address or password"));
+        $this->assertTrue(session()->hasOldInput('email'));
+        $this->assertFalse(session()->hasOldInput('password'));
+        $this->assertGuest();
+    }
+
 }
