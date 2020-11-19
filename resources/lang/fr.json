@@ -9,5 +9,8 @@
     "The password must contain at least 8 characters": "Le mot de passe doit contenir au moins 8 caractères",
     "Incorrect e-mail address or password": "Adresse e-mail ou mot de passe incorrect",
     "Remember me": "Se souvenir de moi",
-    "Forgot your password ?" : "Mot de passe oublié ?"
+    "Forgot your password ?" : "Mot de passe oublié ?",
+    "Publish a project" : "Publier un projet",
+    "Tourist login" : "Accès touriste",
+    "Tourism professionals access" : "Accès professionnels du tourisme"
 }
