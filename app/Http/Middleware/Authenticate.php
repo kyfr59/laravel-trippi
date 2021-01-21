@@ -32,7 +32,6 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        dd('ff');
         if ($user = Auth::user()) {
             if ($user->type == User::TOURIST)
                 return redirect(localized_route('tourist.home'));

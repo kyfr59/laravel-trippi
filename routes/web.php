@@ -54,4 +54,6 @@ Route::name('tourist.')->group(function () {
   Route::multilingual('tourist/login', 'Tourist\LoginController@login')->method('post')->name('login');
   Route::multilingual('tourist/logout', 'Tourist\LoginController@logout')->method('post')->name('logout');
   Route::multilingual('tourist/publish', 'Tourist\ProjectController@publish')->name('publish');
+  Route::multilingual('tourist/publish', 'Tourist\ProjectController@publish')->method('post')->name('publish');
+  Route::multilingual('tourist/identification', 'Tourist\ProjectController@identification')->name('identification');
 });

@@ -80,7 +80,9 @@ class LoginController extends Controller
               'type' => User::TOURIST
             ]
         )) {
-          return redirect(localized_route('tourist.home'));
+
+          $redirect = isset($input['redirect_to']) ? $input['redirect_to'] : localized_route('tourist.home');
+          return redirect($redirect);
         } else {
           return redirect(localized_route('tourist.login'))
                 ->with('error', __("Incorrect e-mail address or password"))

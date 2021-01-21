@@ -7,21 +7,26 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Publish a project') }}</div>
-                </div>
+<form method="POST" action="{{ localized_route('tourist.publish') }}">
+    @csrf
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ __('Publish a project') }}</h1>
             </div>
         </div>
-    </div>
 
-    <div class="row justify-content-center">
-      <div>
-        <input type="text" name="destination" id="destination">
-      </div>
-    </div>
+        <div class="row">
+            <div class="col-12">
+                <input type="text" name="destination" id="destination">
+            </div>
+        </div>
 
-</div>
+        <div class="row">
+            <div class="col-12">
+                <input type="submit">
+            </div>
+        </div>
+     </div>
+</form>
 @endsection
