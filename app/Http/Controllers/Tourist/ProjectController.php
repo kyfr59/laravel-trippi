@@ -48,6 +48,18 @@ class ProjectController extends Controller
 
         } else { // Post method
 
+            $messages = [
+              'destination.required' => __("The destination is required"),
+            ];
+
+            $v = $this->validate(
+                $request,
+                [
+                  'destination' => 'required|min:6',
+                ],
+                $messages
+            );
+
             if ($user &&
                 $user->type == User::TOURIST
             ) {

@@ -19,6 +19,11 @@
         <div class="row">
             <div class="col-12">
                 <input type="text" name="destination" id="destination">
+                @error('destination')
+                        <div class="alert alert-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @enderror
             </div>
         </div>
 
