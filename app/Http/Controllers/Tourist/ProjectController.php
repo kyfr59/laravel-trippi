@@ -55,7 +55,11 @@ class ProjectController extends Controller
             $v = $this->validate(
                 $request,
                 [
-                  'destination' => 'required|min:6',
+                  'destination'      => 'required',
+                  'ville'            => 'required',
+                  'latitude'         => 'required',
+                  'longitude'        => 'required',
+                  'code_departement' => 'required',
                 ],
                 $messages
             );

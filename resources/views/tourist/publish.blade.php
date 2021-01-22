@@ -18,16 +18,22 @@
 
         <div class="row">
             <div class="col-12">
-                <input type="text" name="destination" id="destination">
-                @error('destination')
-                        <div class="alert alert-danger" role="alert">
-                        <strong>{{ $message }}</strong>
+                <input type="text" name="destination" id="destination"  value="{{ old('destination') }}">
+                @if ($errors->has('destination'))
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $errors->first('destination') }}</strong>
                     </div>
-                @enderror
-                <input type="text" name="ville">
-                <input type="text" name="code_departement">
-                <input type="text" name="latitude">
-                <input type="text" name="longitude">
+                @else
+                    @if ($errors->has('ville') || $errors->has('latitude') || $errors->has('longitude') || $errors->has('code_departement'))
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ __('Please select a destination in the list') }}</strong>
+                        </div>
+                    @endif
+                @endif
+                <input type="text" name="ville" value="{{ old('ville') }}">
+                <input type="text" name="code_departement" value="{{ old('code_departement') }}">
+                <input type="text" name="latitude" value="{{ old('latitude') }}">
+                <input type="text" name="longitude" value="{{ old('longitude') }}">
             </div>
         </div>
 
