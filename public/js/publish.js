@@ -43,4 +43,12 @@ jQuery(document).ready(function($) {
       $('input[name="longitude"]').val('');
     }
   });
+
+  placesAutocomplete.on('clear', function(e) {
+    $('input[name="ville"]').val('');
+    $('input[name="code_departement"]').val('');
+    $('input[name="latitude"]').val('');
+    $('input[name="longitude"]').val('');
+  });
+
 });
