@@ -20,6 +20,27 @@ jQuery(document).ready(function($) {
     var lat = latlng.lat;
     var lng = latlng.lng;
     var city = e.suggestion.name;
+    var postcode = e.suggestion.highlight.postcode;
+    var code_departement = postcode.substr(0, 2);
+    if (code_departement == 20) {
+      if (postcode.substr(0, 3) == 201) {
+        code_departement = '2a';
+      } else {
+        code_departement = '2b';
+      }
+    }
+    $('input[name="ville"]').val(city);
+    $('input[name="code_departement"]').val(code_departement);
+    $('input[name="latitude"]').val(lat);
+    $('input[name="longitude"]').val(lng);
   });
 
+  $('#destination').on('keyup', function() {
+    if ($(this).val() == '') {
+      $('input[name="ville"]').val('');
+      $('input[name="code_departement"]').val('');
+      $('input[name="latitude"]').val('');
+      $('input[name="longitude"]').val('');
+    }
+  });
 });

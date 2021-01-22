@@ -24,6 +24,10 @@
                         <strong>{{ $message }}</strong>
                     </div>
                 @enderror
+                <input type="text" name="ville">
+                <input type="text" name="code_departement">
+                <input type="text" name="latitude">
+                <input type="text" name="longitude">
             </div>
         </div>
 
