@@ -52,6 +52,8 @@ class ProjectController extends Controller
               'destination.required'  => __("The destination is required"),
               'date_debut.required'   => __("The start date is required"),
               'date_fin.required'     => __("The end date is required"),
+              'email.required'        => __("The e-mail address is required"),
+              'email.email'           => __("The e-mail address is invalid"),
             ];
 
             $v = $this->validate(
@@ -64,6 +66,7 @@ class ProjectController extends Controller
                   'code_departement' => 'required',
                   'date_debut'       => 'required',
                   'date_fin'         => 'required',
+                  'email'            => 'required|email',
                 ],
                 $messages
             );

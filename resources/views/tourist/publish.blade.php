@@ -41,16 +41,26 @@
 
         <div class="row">
             <div class="col-6">
-                <label>Du</label>
+                <label>{{ __('From') }}</label>
                 <input type="text" name="date_debut" id="date_debut" placeholder="{{ __('Start date') }}" value="{{ old('date_debut') }}">
                 @error('date_debut')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-6">
-                <label>Au</label>
+                <label>{{ __('To') }}</label>
                 <input type="text" name="date_fin" id="date_fin" placeholder="{{ __('End date') }}" value="{{ old('date_fin') }}">
                 @error('date_fin')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <label>{{ __('E-mail address') }}</label>
+                <input type="text" name="email" id="email" placeholder="{{ __('E-mail address') }}" value="{{ old('email') }}">
+                @error('email')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
