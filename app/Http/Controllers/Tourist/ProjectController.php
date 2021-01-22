@@ -49,7 +49,9 @@ class ProjectController extends Controller
         } else { // Post method
 
             $messages = [
-              'destination.required' => __("The destination is required"),
+              'destination.required'  => __("The destination is required"),
+              'date_debut.required'   => __("The start date is required"),
+              'date_fin.required'     => __("The end date is required"),
             ];
 
             $v = $this->validate(
@@ -60,6 +62,8 @@ class ProjectController extends Controller
                   'latitude'         => 'required',
                   'longitude'        => 'required',
                   'code_departement' => 'required',
+                  'date_debut'       => 'required',
+                  'date_fin'         => 'required',
                 ],
                 $messages
             );
