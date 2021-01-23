@@ -57,8 +57,11 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('Publish my project') }}
                                 </button>
+                                <a href="{{ localized_route('tourist.publish') }}#" class="btn btn-primary">
+                                    {{ __('Modify my project') }}
+                                </a>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ localized_route('password.request') }}">

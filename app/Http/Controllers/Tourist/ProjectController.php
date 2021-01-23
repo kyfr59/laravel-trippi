@@ -42,6 +42,14 @@ class ProjectController extends Controller
 
             } else {
 
+                // If a project exists in session, fill the form with session data
+                if ($request->session()->has('project')) {
+
+                  $project = $request->session()->get('project');
+                  $request->session()->forget('project');
+                  return redirect(localized_route('tourist.publish'))->withInput($project);
+                }
+
                 // Show the project form
                 return view('tourist.publish');
             }
