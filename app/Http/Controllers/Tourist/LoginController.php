@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\User;
+use Validator;
 
 class LoginController extends Controller
 {
@@ -64,14 +65,14 @@ class LoginController extends Controller
             ];
 
 
-        $v = $this->validate(
-            $request,
-            [
-              'email' => 'required|email',
-              'password' => 'required|min:8',
-            ],
-            $messages
-        );
+        $validator = Validator::make($request->all(),  [
+          'email' => 'required|email',
+          'password' => 'required|min:8',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator, 'login')->withInput();
+        }
 
         if (auth()->attempt(
             [

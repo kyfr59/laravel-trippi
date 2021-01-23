@@ -25,9 +25,9 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-mail address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email"  class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                                <input id="email"  class="@error('email', 'login') is-invalid @enderror" name="email" value="{{ old('email') }}">
 
-                                @error('email')
+                                @error('email', 'login')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -39,9 +39,9 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" autocomplete="current-password">
+                                <input id="password" type="password" class="@error('password', 'login') is-invalid @enderror" name="password" autocomplete="current-password">
 
-                                @error('password')
+                                @error('password', 'login')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
