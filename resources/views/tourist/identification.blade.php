@@ -20,20 +20,7 @@
                         @csrf
 
                         <input type="text" name="redirect_to" value="{{ localized_route('tourist.publish') }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-mail address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email"  class="@error('email', 'login') is-invalid @enderror" name="email" value="{{ old('email') }}">
-
-                                @error('email', 'login')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                        <input type="text" id="email" name="email" value="{{ $email }}">
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

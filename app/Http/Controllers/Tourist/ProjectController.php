@@ -103,6 +103,6 @@ class ProjectController extends Controller
 
         $project = $request->session()->get('project');
 
-        return view('tourist.identification');
+        return view('tourist.identification', ['email' => $project['email']]);
     }
 }
