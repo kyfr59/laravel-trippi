@@ -97,6 +97,12 @@ class ProjectController extends Controller
      */
     public function identification(Request $request)
     {
+        if (!$request->session()->has('project')) {
+          return back();
+        }
+
+        $project = $request->session()->get('project');
+
         return view('tourist.identification');
     }
 }
