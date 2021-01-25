@@ -12,6 +12,8 @@ use UnexpectedValueException;
 
 class TouristPasswordBroker implements PasswordBrokerContract
 {
+    const INVALID_TOURIST = 'passwords.tourist.email.not.exist';
+
     /**
      * The password token repository.
      *
@@ -52,7 +54,7 @@ class TouristPasswordBroker implements PasswordBrokerContract
         // "flash" data in the session to indicate to the developers the errors.
         $user = $this->getUser($credentials);
         if (is_null($user)) {
-            return 'passwords.tourist.email.not.exist';
+            return static::INVALID_TOURIST;
         }
 
         if ($this->tokens->recentlyCreatedToken($user)) {
@@ -107,7 +109,7 @@ class TouristPasswordBroker implements PasswordBrokerContract
     protected function validateReset(array $credentials)
     {
         if (is_null($user = $this->getUser($credentials))) {
-            return static::INVALID_USER;
+            return static::INVALID_TOURIST;
         }
 
         if (! $this->tokens->exists($user, $credentials['token'])) {
@@ -180,4 +182,5 @@ class TouristPasswordBroker implements PasswordBrokerContract
     {
         return $this->tokens;
     }
+
 }
