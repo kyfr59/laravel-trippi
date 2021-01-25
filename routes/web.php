@@ -24,7 +24,6 @@ Route::multilingual('register', 'Auth\RegisterController@register')->method('pos
 
 
 // Password Reset Routes...
-Route::multilingual('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
 Route::multilingual('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->method('post');
 Route::multilingual('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::multilingual('password/reset', 'Auth\ResetPasswordController@reset')->method('post');
@@ -53,6 +52,7 @@ Route::name('tourist.')->group(function () {
   Route::multilingual('tourist/login', 'Tourist\LoginController@showLoginForm')->name('login');
   Route::multilingual('tourist/login', 'Tourist\LoginController@login')->method('post')->name('login');
   Route::multilingual('tourist/logout', 'Tourist\LoginController@logout')->method('post')->name('logout');
+  Route::multilingual('tourist/password', 'Tourist\ForgotPasswordController@showLinkRequestForm')->name('password');
   Route::multilingual('tourist/publish', 'Tourist\ProjectController@publish')->name('publish');
   Route::multilingual('tourist/publish', 'Tourist\ProjectController@publish')->method('post')->name('publish');
   Route::multilingual('tourist/identification', 'Tourist\ProjectController@identification')->name('identification');

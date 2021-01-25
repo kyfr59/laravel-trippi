@@ -62,12 +62,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ localized_route('password.request') }}">
-                                        {{ __('Forgot your password ?') }}
-                                    </a>
-                                @endif
+                                <a class="btn btn-link" href="{{ localized_route('tourist.password') }}">
+                                    {{ __('Forgot your password ?') }}
+                                </a>
                             </div>
                         </div>
                     </form>
