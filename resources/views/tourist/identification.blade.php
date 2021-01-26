@@ -19,8 +19,8 @@
                     <form method="POST" action="{{ localized_route('tourist.login') }}">
                         @csrf
 
-                        <input type="text" name="redirect_to" value="{{ localized_route('tourist.publish') }}">
-                        <input type="text" id="email" name="email" value="{{ $email }}">
+                        <input type="hidden" name="redirect_to" value="{{ localized_route('tourist.publish') }}">
+                        <input type="hidden" id="email" name="email" value="{{ $email }}">
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -69,6 +69,9 @@
                                     </a>
                                 @endif
                             </div>
+                            <a class="btn btn-link" href="{{ localized_route('tourist.password') }}">
+                                {{ __('Forgot your password ?') }}
+                            </a>
                         </div>
                     </form>
                 </div>
