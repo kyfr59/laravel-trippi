@@ -50,6 +50,7 @@ Route::name('tourist.')->group(function () {
   Route::multilingual('tourist/password/email', 'Tourist\ForgotPasswordController@sendResetLinkEmail')->method('post')->name('password.email');
   Route::multilingual('tourist/password/reset', 'Tourist\ResetPasswordController@reset')->method('post')->name('password.update');
   Route::multilingual('tourist/password/reset/{token}', 'Tourist\ResetPasswordController@showResetForm')->name('password.reset');
+  Route::multilingual('tourist/password/confirmation', 'Tourist\ResetPasswordController@confirmation')->name('password.confirmation');
   Route::multilingual('tourist/publish', 'Tourist\ProjectController@publish')->name('publish');
   Route::multilingual('tourist/publish', 'Tourist\ProjectController@publish')->method('post')->name('publish');
   Route::multilingual('tourist/identification', 'Tourist\ProjectController@identification')->name('identification');
