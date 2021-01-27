@@ -42,15 +42,15 @@
         <div class="row">
             <div class="col-6">
                 <label>{{ __('From') }}</label>
-                <input type="text" name="date_debut" id="date_debut" placeholder="{{ __('Start date') }}" value="{{ old('date_debut') }}">
-                @error('date_debut')
+                <input type="text" name="date_start" id="date_start" placeholder="{{ __('Start date') }}" value="{{ old('date_start') }}">
+                @error('date_start')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-6">
                 <label>{{ __('To') }}</label>
-                <input type="text" name="date_fin" id="date_fin" placeholder="{{ __('End date') }}" value="{{ old('date_fin') }}">
-                @error('date_fin')
+                <input type="text" name="date_end" id="date_end" placeholder="{{ __('End date') }}" value="{{ old('date_end') }}">
+                @error('date_end')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>

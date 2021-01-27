@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
 
 jQuery(document).ready(function($) {
 
-    $( "#date_debut, #date_fin" ).datepicker({
+    $( "#date_start, #date_end" ).datepicker({
         altField: "#datepicker",
         closeText: 'Fermer',
         prevText: 'Précédent',
@@ -77,8 +77,8 @@ jQuery(document).ready(function($) {
             $(this).blur();
         },
         beforeShow: function(input) {
-            if (input.id == 'date_fin') {
-                var date_debut = $('#date_debut').val();
+            if (input.id == 'date_end') {
+                var date_debut = $('#date_start').val();
                 var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
                 if(!date_debut) {
                     return {
@@ -96,8 +96,8 @@ jQuery(document).ready(function($) {
             }
         },
         onSelect: function(value, input) {
-            if (input.id == 'date_debut') {
-              $('#date_fin').val('');
+            if (input.id == 'date_start') {
+              $('#date_end').val('');
             }
         }
     });

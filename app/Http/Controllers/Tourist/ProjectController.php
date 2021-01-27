@@ -58,8 +58,8 @@ class ProjectController extends Controller
 
             $messages = [
               'destination.required'  => __("The destination is required"),
-              'date_debut.required'   => __("The start date is required"),
-              'date_fin.required'     => __("The end date is required"),
+              'date_start.required'   => __("The start date is required"),
+              'date_end.required'     => __("The end date is required"),
               'email.required'        => __("The e-mail address is required"),
               'email.email'           => __("The e-mail address is invalid"),
             ];
@@ -72,8 +72,8 @@ class ProjectController extends Controller
                   'latitude'         => 'required',
                   'longitude'        => 'required',
                   'code_departement' => 'required',
-                  'date_debut'       => 'required',
-                  'date_fin'         => 'required',
+                  'date_start'       => 'required',
+                  'date_end'         => 'required',
                   'email'            => 'required|email',
                 ],
                 $messages
