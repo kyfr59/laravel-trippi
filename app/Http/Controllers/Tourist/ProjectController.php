@@ -57,12 +57,19 @@ class ProjectController extends Controller
         } else { // Post method
 
             $messages = [
-              'destination.required'  => __("The destination is required"),
-              'date_start.required'   => __("The start date is required"),
-              'date_end.required'     => __("The end date is required"),
-              'email.required'        => __("The e-mail address is required"),
-              'email.email'           => __("The e-mail address is invalid"),
+              'destination.required'    => __("The destination is required"),
+              'date_start.required'     => __("The start date is required"),
+              'date_start.date_format'  => __("The start date is invalid"),
+              'date_end.required'       => __("The end date is required"),
+              'date_end.date_format'    => __("The end date is invalid"),
+              'date_end.after_or_equal' => __("The end date must come after the date start"),
+              'email.required'          => __("The e-mail address is required"),
+              'email.email'             => __("The e-mail address is invalid"),
             ];
+
+
+            $date_format = $request->get('lang') == 'fr' ? 'd/m/Y' : 'm/d/Y';
+
 
             $v = $this->validate(
                 $request,
@@ -72,8 +79,8 @@ class ProjectController extends Controller
                   'latitude'         => 'required',
                   'longitude'        => 'required',
                   'code_departement' => 'required',
-                  'date_start'       => 'required',
-                  'date_end'         => 'required',
+                  'date_start'       => 'required|date_format:"'.$date_format.'"',
+                  'date_end'         => 'required|date_format:"'.$date_format.'"|after_or_equal:date_start',
                   'email'            => 'required|email',
                 ],
                 $messages
@@ -82,6 +89,9 @@ class ProjectController extends Controller
             if ($user &&
                 $user->type == User::TOURIST
             ) {
+
+                $date_start = calendar_to_timestamp($request->get('date_start'), $request->get('lang'));
+                $date_end   = calendar_to_timestamp($request->get('date_end'), $request->get('lang'));
 
                 // Store the project from POST data
                 echo "Stockage en base de : ".$request->all()['destination'];
