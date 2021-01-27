@@ -12,6 +12,7 @@
 
 <form method="POST" action="{{ localized_route('tourist.publish') }}">
     @csrf
+    <input type="hidden" name="lang" id="lang" value="{{ locale() }}">
     <div class="container">
         <div class="row">
             <div class="col-12">
