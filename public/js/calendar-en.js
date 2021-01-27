@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
                         minDate: 0
                     }
                 }
-                var minDate = new Date(date_debut.replace(pattern,'$3-$2-$1'));
+                var minDate = new Date(date_debut.replace(pattern,'$3-$1-$2'));
                 minDate.setDate(minDate.getDate())
                 return {
                     minDate: minDate
