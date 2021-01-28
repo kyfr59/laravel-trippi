@@ -70,19 +70,21 @@ class ProjectController extends Controller
 
             $date_format = $request->get('lang') == 'fr' ? 'd/m/Y' : 'm/d/Y';
 
+            $rules = ['destination'      => 'required',
+                      'ville'            => 'required',
+                      'latitude'         => 'required',
+                      'longitude'        => 'required',
+                      'code_departement' => 'required',
+                      'date_start'       => 'required|date_format:"'.$date_format.'"',
+                      'date_end'         => 'required|date_format:"'.$date_format.'"|after_or_equal:date_start',
+                      'email'            => 'required|email',
+                    ];
+
+            if ($user) unset($rules['email']);
 
             $v = $this->validate(
                 $request,
-                [
-                  'destination'      => 'required',
-                  'ville'            => 'required',
-                  'latitude'         => 'required',
-                  'longitude'        => 'required',
-                  'code_departement' => 'required',
-                  'date_start'       => 'required|date_format:"'.$date_format.'"',
-                  'date_end'         => 'required|date_format:"'.$date_format.'"|after_or_equal:date_start',
-                  'email'            => 'required|email',
-                ],
+                $rules,
                 $messages
             );
 

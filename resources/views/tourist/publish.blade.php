@@ -58,15 +58,17 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-                <label>{{ __('E-mail address') }}</label>
-                <input type="text" name="email" id="email" placeholder="{{ __('E-mail address') }}" value="{{ old('email') }}">
-                @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+        @if (!Auth::user())
+            <div class="row">
+                <div class="col-12">
+                    <label>{{ __('E-mail address') }}</label>
+                    <input type="text" name="email" id="email" placeholder="{{ __('E-mail address') }}" value="{{ old('email') }}">
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
-        </div>
+        @endif
 
         <div class="row">
             <div class="col-12">
