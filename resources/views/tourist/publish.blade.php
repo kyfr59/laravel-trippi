@@ -34,10 +34,10 @@
                         </div>
                     @endif
                 @endif
-                <input type="text" name="ville" value="{{ old('ville') }}">
-                <input type="text" name="code_departement" value="{{ old('code_departement') }}">
-                <input type="text" name="latitude" value="{{ old('latitude') }}">
-                <input type="text" name="longitude" value="{{ old('longitude') }}">
+                <input type="hidden" name="ville" value="{{ old('ville') }}">
+                <input type="hidden" name="code_departement" value="{{ old('code_departement') }}">
+                <input type="hidden" name="latitude" value="{{ old('latitude') }}">
+                <input type="hidden" name="longitude" value="{{ old('longitude') }}">
             </div>
         </div>
 
