@@ -27,27 +27,36 @@
                         <a class="nav-link" href="{{ localized_route('pro.login') }}">{{ __('Tourism professionals access') }}</a>
                     </li>
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    @php
+                        $type = Auth::user()->type
+                    @endphp
+
+                    @if ($type == 'tourist')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ localized_route('tourist.publish') }}">{{ __('Publish a project') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link">{{ Auth::user()->name }}</span>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <span class="nav-link">{{ Auth::user()->name }}</span>
+                        </li>
+                    @endif
+
+                    <li class="nav-item">
+                        <form id="logout-form" action="{{ localized_route($type . '.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a class="nav-link" href="{{ localized_route($type . '.logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
                         </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            @php
-                                $type = Auth::user()->type
-                            @endphp
-                            <a class="dropdown-item" href="{{ localized_route($type . '.logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ localized_route($type . '.logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
                     </li>
+
                 @endguest
+
                 <li class="nav-item">
                     @php
                         $languages = Config::get('constants.languages')[locale()];
